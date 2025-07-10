@@ -13,7 +13,9 @@ p {
   margin: 0;
 }
 a:hover {
-  color: #235392;
+  color: #d4af37;
+  /* класичне золото */
+  transition: color 0.3s ease;
 }
 a,
 ul,
@@ -22,7 +24,7 @@ li {
   font-style: normal;
   list-style: none;
   padding: 0;
-  color: inherit;
+  color: #f5e7a2;
 }
 .container {
   margin: 0 auto;
@@ -39,20 +41,36 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+.header {
+  border-bottom: 3px solid #d4af37; /* тонка золота лінія внизу */
+  color: #3b2e00;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* легка тінь для об'єму */
+}
 .nav-list {
   display: flex;
   gap: 20px;
   text-transform: uppercase;
   font-weight: 600;
 }
-.nav-list > li {
-  border-bottom: solid 3px #2653ac;
+.nav-list>li {
+  border-bottom: solid 3px #d4af37;
+  /* класичне золото */
 }
 
 .hero {
-background: linear-gradient(to bottom, #000000, #0b2342);
-  color: #eee;
+  background: linear-gradient(180deg, #1a1200 0%, #4b3200 60%, #d4af37 100%);
+  color: #fff9e5;
+  /* м’який світло-золотистий колір тексту */
   font-size: 40px;
+  font-weight: 700;
+}
+
+.casino {
+  background: linear-gradient(135deg, #a69677, #f8eacf, #595750);
+  padding: 40px 20px;
+  color: #f5e7a2;
+  /* світло-золотистий текст для контрасту */
+  box-shadow: inset 0 0 50px rgba(212, 175, 55, 0.4);
 }
 
 .hero > .container {
@@ -75,11 +93,24 @@ background: linear-gradient(to bottom, #000000, #0b2342);
 
 .casino-item {
   display: flex;
-  background-color: #f8f8f8;
+  background: linear-gradient(145deg, #a97a1f, #dad4c1);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    /* глибша тінь для “вау” ефекту */
+    inset 0 0 15px rgba(212, 175, 55, 0.7);
+  /* внутрішній золотий блиск */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.casino-item:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 8px 20px rgba(212, 175, 55, 0.9),
+    /* яскравий зовнішній блиск */
+    inset 0 0 25px rgba(255, 223, 100, 0.8);
 }
 
 .casino-item:hover {
@@ -105,16 +136,28 @@ background: linear-gradient(to bottom, #000000, #0b2342);
   margin: 10px 0;
 }
 .button {
-  background-color: #00bcff;
+  background-color: #d4af37;
+  /* класичне золото */
   padding: 10px 15px;
   border-radius: 10px;
   line-height: 1.8;
-  border: solid 2px #0060af;
+  border: solid 2px #5c4500;
+  /* темно-золотий кордон */
   text-transform: uppercase;
+  color: #1c1400;
+  /* дуже темний для читабельності */
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
+
 .button:hover {
-  background-color: #3d62e9;
-  color: #ffffff;
+  background-color: #f7d559;
+  /* світліше золото на ховері */
+  color: #3b2700;
+  /* темно-коричневий текст */
+  box-shadow: 0 0 10px 2px rgba(212, 175, 55, 0.8);
+  /* легкий золотий світловий ореол */
 }
 
 .comment,
@@ -175,8 +218,11 @@ background: linear-gradient(to bottom, #000000, #0b2342);
   width: 100%;
 }
 .footer-content {
-  background-color: #062b72;
-  color: #eee;
+  background-color: #1e1400;
+  /* дуже темний коричневий */
+  color: #f5e7a2;
+  border-top: 3px solid #d4af37;
+  /* тонка золота лінія зверху */
 }
 .footer-cooperation {
   text-align: center;
