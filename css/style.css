@@ -617,83 +617,119 @@ li {
 }
 
 .page-container {
-  max-width: 1100px;
-  margin: 50px auto;
-  padding: 60px 80px; /* більші відступи, щоб текст займав ширше поле */
-  background: rgba(10, 31, 68, 0.05); /* майже прозорий, дуже світлий фон */
-  border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-  color: #bcc6e0; /* темно-сірий із синюватим відтінком, щоб краще читалось */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.85;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 50px 70px;
+  background: linear-gradient(135deg, #1a1a1a, #2e2e2e);
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  color: #f0e68c;
+  /* світлий золотистий для контрасту */
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
   box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.4s ease, background 0.4s ease;
 }
 
 .page-container:hover {
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 90px rgba(255, 215, 0, 0.8);
+  background: linear-gradient(135deg, #292929, #3f3f3f);
 }
 
 .page-container h1 {
-  color: #4a6dbc; /* темно-синій, контрастний */
-  font-size: 3.4rem;
-  margin-bottom: 50px;
+  color: #ffd700;
+  /* класичний золотий */
+  font-size: 3.8rem;
+  margin-bottom: 60px;
   text-align: center;
-  font-weight: 700;
-  font-family: 'Montserrat', 'Segoe UI', sans-serif;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 12px #ffd700aa;
+  user-select: none;
 }
 
 .page-container h2 {
-  color: #6078a0; /* темніший синій/сірий */
-  font-size: 2.2rem;
-  margin-top: 3rem;
-  margin-bottom: 20px;
-  font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 1px 1px 1.5px rgba(0,0,0,0.2);
+  color: #f5deb3;
+  /* пшеничний світлий */
+  font-size: 2.6rem;
+  margin-top: 3.5rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-shadow: 0 0 8px #deb887bb;
 }
 
 .page-container p {
-  font-size: 19px;
-  margin-bottom: 28px;
-  color: #596984; /* темний сірий із холодним відтінком */
+  font-size: 20px;
+  margin-bottom: 32px;
+  color: #dcdcdc;
+  /* світло-сірий */
+  font-weight: 400;
+  text-shadow: 0 0 3px #00000055;
 }
 
 .page-container strong {
-  color: #3f4f78; /* ще темніший відтінок для акцентів */
-  font-weight: 700;
+  color: #ffcc00;
+  /* насичений жовтий */
+  font-weight: 800;
 }
 
 .page-container a {
-  color: #3f5ab8;
-  text-decoration: underline;
-  transition: color 0.3s ease;
+  color: #f0e68c;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .page-container a:hover,
 .page-container a:focus {
-  color: #2a3f85;
-  text-decoration: none;
+  color: #ffd700;
+  border-bottom-color: #ffd700;
+  outline: none;
 }
 
 /* Адаптивність */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .page-container {
-    padding: 30px 25px;
+    padding: 40px 35px;
     max-width: 95%;
   }
+
   .page-container h1 {
-    font-size: 2.6rem;
-    margin-bottom: 35px;
+    font-size: 3rem;
+    margin-bottom: 40px;
   }
+
   .page-container h2 {
-    font-size: 1.8rem;
-    margin-top: 2.5rem;
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 20px;
+  }
+
+  .page-container p {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 30px 20px;
+  }
+
+  .page-container h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  .page-container h2 {
+    font-size: 1.6rem;
+    margin-top: 2rem;
     margin-bottom: 16px;
   }
+
   .page-container p {
-    font-size: 17px;
-    margin-bottom: 22px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 }
