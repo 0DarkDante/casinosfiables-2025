@@ -299,6 +299,7 @@ li {
 
 /* Styles de la bannière de cookies */
 /* Банер кукі - початковий стан: прихований через opacity та pointer-events */
+/* Банер cookie */
 #cookie-banner {
   position: fixed;
   bottom: 20px;
@@ -306,33 +307,30 @@ li {
   right: 20px;
   max-width: 900px;
   margin: 0 auto;
-  
-  background-color: #0e2c71; /* Темно-синій фон */
-  color: #fff;
+  background: rgba(255, 215, 0, 0.6);
+    border: 2px solid #d4af37;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.6), 0 0 15px rgba(212, 175, 55, 0.8);
+    border-radius: 16px;
+  color: #0f0f0f;
   padding: 20px 25px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
-
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
   z-index: 9999;
 }
 
-/* Видимий банер */
 #cookie-banner.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Кнопки */
 .cookie-buttons {
   display: flex;
   gap: 10px;
@@ -365,311 +363,243 @@ li {
   background-color: #c0392b;
 }
 
-/* Адаптивність для мобільних */
 @media (max-width: 600px) {
   #cookie-banner {
     flex-direction: column;
     align-items: flex-start;
     padding: 15px 20px;
   }
+
   .cookie-buttons {
     justify-content: flex-start;
     width: 100%;
   }
+
   #cookie-banner p {
     margin-bottom: 10px;
   }
 }
 
+/* Уніфікований фон для всіх модалок */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 20, 0.75);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-/* Стилі для повноекранного попапу */
+/* Уніфікований стиль вмісту модалок */
+.modal-content {
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #d4af37;
+  box-shadow:
+    0 8px 32px rgba(212, 175, 55, 0.6),
+    0 0 15px rgba(212, 175, 55, 0.8);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  width: 90%;
+  max-width: 550px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #fff8d1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: left;
+  box-sizing: border-box;
+  transform: translateY(-40px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #ffd54f;
+  text-align: center;
+  text-shadow: 0 0 8px #d4af37;
+}
+
+/* Поля форми */
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  padding: 0.85rem 1.2rem;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: rgba(212, 175, 55, 0.15);
+  color: #fff8d1;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.modal-content input::placeholder,
+.modal-content textarea::placeholder {
+  color: #ffe082;
+  opacity: 1;
+  font-style: italic;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #fff176;
+  background-color: rgba(255, 255, 255, 0.15);
+  outline: none;
+  color: #fff;
+  box-shadow: 0 0 10px #ffd54f;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 140px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Кнопки модалок */
+.modal-buttons {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 0.85rem 1.4rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.modal-buttons button.close-modal {
+  flex: 0 0 auto;
+  padding: 0.65rem 1.25rem;
+  background: transparent;
+  border: 2px solid #ffd54f;
+  color: #ffd54f;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.modal-buttons button.close-modal:hover {
+  background-color: #ffd54f;
+  color: #0b1a00;
+  box-shadow: 0 0 10px #ffd54f;
+}
+
+.modal-buttons button[type="submit"] {
+  background-color: #ffd54f;
+  color: #3b2f00;
+  font-weight: 800;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px #d4af37;
+}
+
+.modal-buttons button[type="submit"]:hover {
+  background-color: #fff176;
+  color: #2a2200;
+  box-shadow: 0 0 15px 3px #fff176;
+}
+
+.modal-content p {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  color: #fff8d1;
+  text-shadow: 0 0 4px rgba(212, 175, 55, 0.8);
+}
+
+/* Специфічні стилі для age popup (18+) */
 .age-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 20, 0.95);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100000;
+  z-index: 11000;
 }
 
 .age-popup-content {
-  background-color: #004080;
-  padding: 40px 60px;
-  border-radius: 12px;
-  text-align: center;
-  color: white;
-  max-width: 400px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  background: rgba(212, 175, 55, 0.15);
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+  padding: 3rem 4rem;
+  max-width: 420px;
+  box-shadow:
+    0 0 40px rgba(212, 175, 55, 0.7);
+  color: #fff8d1;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
 }
 
 .age-popup-content h1 {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+  color: #ffd54f;
+  text-shadow: 0 0 8px #d4af37;
 }
 
 .age-popup-content p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  font-size: 1.3rem;
+  margin-bottom: 35px;
+  color: #fff8d1;
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.9);
 }
 
 .age-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
-}
-
-.btn {
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-yes {
-  background-color: #2ecc71;
-  color: white;
-}
-
-.btn-yes:hover {
-  background-color: #27ae60;
-}
-
-.btn-no {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.btn-no:hover {
-  background-color: #c0392b;
-}
-
-/* Фон модалки */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 25, 50, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Активна модалка */
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Вміст модалки */
-.modal-content {
-  background: #0b2342;
-  border-radius: 12px;
-  padding: 2rem 2.5rem;
-  width: 95%; /* Замість 90% */
-max-width: 550px !important;
-  max-height: 80vh;
-  overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;
-  box-shadow: 0 12px 30px rgba(0, 40, 80, 0.7);
-  color: #e0e7ff;
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: left;
-  box-sizing: border-box;
-
-  transform: translateY(-40px);
-  opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
-}
-
-.modal-content::-webkit-scrollbar {
-  display: none;
-}
-
-
-/* Анімація появи */
-.modal-overlay.active .modal-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Заголовок */
-.modal-content h2 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #a8c0ff;
-  text-align: center;
-}
-
-/* Інпути та textarea */
-.modal-content input,
-.modal-content textarea {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 1.25rem;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #204080;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #142a4b;
-  color: #d7e3fc;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.modal-content input::placeholder,
-.modal-content textarea::placeholder {
-  color: #a0b4d6;
-  opacity: 1;
-}
-
-.modal-content input:focus,
-.modal-content textarea:focus {
-  border-color: #7095ff;
-  background-color: #1c3a7d;
-  outline: none;
-  color: #f0f4ff;
-}
-
-.modal-content textarea {
-  resize: vertical;
-  min-height: 120px;
-  max-height: 180px;
-  overflow-y: auto;
-}
-
-/* Контейнер для кнопок */
-.modal-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 1rem;
-}
-
-/* Кнопки */
-.modal-buttons button {
-  flex: 1;
-  padding: 0.75rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  border: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background-color 0.3s ease;
-}
-
-/* Кнопка "Fermer" меншою */
-.modal-buttons button.close-modal {
-  flex: 0 0 auto;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  border: 2px solid #7095ff;
-  color: #7095ff;
-  font-weight: 600;
-}
-
-.modal-buttons button.close-modal:hover {
-  background-color: #7095ff;
-  color: #0b2342;
-}
-
-/* Кнопка "Envoyer" */
-.modal-buttons button[type="submit"] {
-  background-color: #506eff;
-  color: white;
-  font-weight: 600;
-}
-
-.modal-buttons button[type="submit"]:hover {
-  background-color: #7a95ff;
-}
-
-.modal-content p {
-  margin-bottom: 10px;
-}
-
-/* 18+ */
-
-/* Основний фон модалки */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 25, 50, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Активна модалка */
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Вміст модалки */
-.modal-content {
-  background: #0b2342;
-  border-radius: 12px;
-  padding: 2rem 2.5rem;
-  max-width: 380px;
-  width: 90%;
-  box-shadow: 0 12px 30px rgba(0, 40, 80, 0.7);
-  color: #e0e7ff;
-  font-size: 1.5rem;
-  text-align: center;
-
-  transform: translateY(-40px);
-  opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
-}
-
-/* Анімація появи */
-.modal-overlay.active .modal-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Кнопки */
-.age-buttons {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  gap: 25px;
 }
 
 .age-buttons button {
   flex: 1;
-  padding: 0.75rem 1.2rem;
-  font-size: 1.2rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  border-radius: 8px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
+  text-transform: uppercase;
 }
 
-/* Кнопка "Oui" - зелена */
 .age-buttons #ageYes {
   background-color: #28a745;
 }
@@ -678,7 +608,6 @@ max-width: 550px !important;
   background-color: #40c057;
 }
 
-/* Кнопка "Non" - червона */
 .age-buttons #ageNo {
   background-color: #dc3545;
 }
